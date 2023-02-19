@@ -1,9 +1,44 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { YOUTUBE_SEARCH_API } from "../config";
+import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestion();
+      }
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestion = async () => {
+    console.log(searchQuery);
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    // console.log(json[1]);
+    setSuggestions(json[1]);
+
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
+  };
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -26,16 +61,35 @@ const Header = () => {
           />
         </a>
       </div>
-      <div className="flex w-[690px]">
-        <input
-          className="w-[650px] px-3 py-2 rounded-l-full border border-gray-200"
-          type="text"
-          placeholder="Search"
-        />
-        <button className="w-[70px] p-2 rounded-r-full border border-gray-200 bg-gray-300">
-          🔍
-        </button>
+      <div>
+        <div className="flex w-[690px]">
+          <input
+            className="w-[650px] px-3 py-2 rounded-l-full border border-gray-200"
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
+          />
+          <button className="w-[70px] p-2 rounded-r-full border border-gray-200 bg-gray-300">
+            🔍
+          </button>
+        </div>
+
+        {showSuggestions && (
+          <div className=" bg-white ml-[2px] mt-[2px] p-2 w-[623px] border border-gray-200 rounded-lg shadow-lg absolute">
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s} className="hover:bg-gray-100">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
+
       <div>
         <img
           className="h-[30px] items-center m-1"

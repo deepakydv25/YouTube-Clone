@@ -5,8 +5,12 @@ import Sidebar from "./Sidebar";
 const Body = () => {
   return (
     <div className="flex">
-      <Sidebar />
-      <Outlet />
+      <div className="w-2/12">
+        <Sidebar />
+      </div>
+      <div className="w-10/12 ml-3">
+        <Outlet />
+      </div>
     </div>
   );
 };

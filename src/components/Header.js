@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../config";
+import { YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_RESULT_API } from "../config";
 import { cacheResults } from "../utils/searchSlice";
+import SideBarMenu from "./SideBarMenu";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,20 +62,22 @@ const Header = () => {
           />
         </a>
       </div>
-      <div>
-        <div className="flex w-[690px]">
-          <input
-            className="w-[650px] px-3 py-2 rounded-l-full border border-gray-200"
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-          />
-          <button className="w-[70px] p-2 rounded-r-full border border-gray-200 bg-gray-300">
-            🔍
-          </button>
+      <div className="flex flex-row bg-yellow-200">
+        <div className="">
+          <form>
+            <input
+              className="w-[650px] px-3 py-2 rounded-l-full border border-gray-200"
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              onBlur={() => setShowSuggestions(false)}
+            />
+            <button className="w-[70px] p-2 rounded-r-full border border-gray-200 bg-gray-300">
+              🔍
+            </button>
+          </form>
         </div>
 
         {showSuggestions && (

@@ -8,6 +8,7 @@ import { RELATED_API, YOUTUBE_CHANNEL_ID, YOUTUBE_ID_VIDEO } from "../config";
 import { FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import { TbArrowBarToDown, TbShare3 } from "react-icons/tb";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import Comments from "./Comments";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -228,6 +229,9 @@ const WatchPage = () => {
                   : null} */}
               </div>
             </div>
+          </div>
+          <div>
+            <Comments />
           </div>
           <div className="w-full">{/* <LiveChat /> */}</div>
         </div>

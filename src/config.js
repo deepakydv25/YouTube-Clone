@@ -26,3 +26,10 @@ export const YOUTUBE_ID_VIDEO =
 export const RELATED_API =
   "https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=[VIDEO_ID]&maxResults=50&type=video&key=" +
   YOUTUBE_API_KEY;
+
+export const YOUTUBE_COMMENTS =
+  "https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&key=" +
+  [YOUTUBE_API_KEY];
+
+// UgzDE2tasfmrYLyNkGt4AaABAg
+// UC2J_VKrAzOEJuQvFFtj3KUw;

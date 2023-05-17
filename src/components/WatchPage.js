@@ -9,6 +9,7 @@ import { FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import { TbArrowBarToDown, TbShare3 } from "react-icons/tb";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Comments from "./Comments";
+import RecommendedVideo from "./RecommendedVideo";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -128,7 +129,7 @@ const WatchPage = () => {
   return (
     <div className="flex">
       <div className="w-2/3">
-        <div className="h-screen pt-2 bg-purple-200">
+        <div className="h-screen pt-2">
           <div>
             <iframe
               className="w-full h-[500px]"
@@ -145,7 +146,7 @@ const WatchPage = () => {
           </div>
           <div>
             <div className="flex justify-between">
-              <div className="flex w-1/2 mb-1 bg-yellow-200">
+              <div className="flex w-1/2 mb-1">
                 <img
                   className="h-10 rounded-full ml-1"
                   src={channelDetails?.snippet?.thumbnails?.default?.url}
@@ -165,7 +166,7 @@ const WatchPage = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex justify-end w-1/2 mb-1 bg-green-200">
+              <div className="flex justify-end w-1/2 mb-1">
                 <div className="flex ml-3">
                   <div className="flex bg-slate-200 rounded-3xl">
                     <div className=" flex flex-row items-center rounded-l-3xl hover:bg-slate-300 cursor-pointer text-sm py-1 px-2 ">
@@ -233,9 +234,19 @@ const WatchPage = () => {
           <div>
             <Comments />
           </div>
+          {/* <div>
+            <RecommendedVideo />
+          </div> */}
           <div className="w-full">{/* <LiveChat /> */}</div>
         </div>
+
         <div>{/* <CommentContainer /> */}</div>
+      </div>
+      <div className="px-5 pt-2 w-1/3">
+        {relatedVideos &&
+          relatedVideos.map((data) => {
+            return <RecommendedVideo data={data} key={data.id.videoId} />;
+          })}
       </div>
     </div>
   );

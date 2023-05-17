@@ -191,3 +191,13 @@ export function makeRandomMessage(length) {
   }
   return result;
 }
+
+export const restrictText = (text, len) => {
+  try {
+    if (text.length < len) return text;
+
+    return text.substring(0, len) + "...";
+  } catch {
+    return false;
+  }
+};

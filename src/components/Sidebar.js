@@ -34,7 +34,7 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   // Early return pattern
-  if (!isMenuOpen) return null;
+  if (!isMenuOpen) return <ClosedSidebar />;
 
   return (
     <div className="px-3 pt-2 shadow-lg bg-red-200">
@@ -251,4 +251,39 @@ const Sidebar = () => {
   );
 };
 
+const ClosedSidebar = () => {
+  return (
+    <div className=" bg-blue-200">
+      <div className="w-14 h-screen z-10 fixed border-r-2">
+        <ul>
+          <li className="py-1 mt-1">
+            <Link to="/">
+              <div className="flex justify-center">
+                <div className="nav hover:bg-slate-300 bg-slate-300 px-4 py-2 rounded-full">
+                  <AiFillHome />
+                </div>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/shorts"
+              className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1"
+            >
+              <img className="h-[17px]" src={shorts} alt="shorts" />
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/subsriptions"
+              className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1"
+            >
+              <MdOutlineSubscriptions className="h-5 w-7" />
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 export default Sidebar;

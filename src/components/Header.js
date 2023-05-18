@@ -62,8 +62,8 @@ const Header = () => {
           />
         </a>
       </div>
-      <div className="flex flex-row bg-yellow-200">
-        <div className="">
+      <div className="flex flex-col">
+        <div className="flex flex-row">
           <form>
             <input
               className="w-[650px] px-3 py-2 rounded-l-full border border-gray-200"
@@ -81,7 +81,7 @@ const Header = () => {
         </div>
 
         {showSuggestions && (
-          <div className=" bg-white ml-[2px] mt-[2px] p-2 w-[623px] border border-gray-200 rounded-lg shadow-lg absolute">
+          <div className=" bg-white ml-[2px] mt-[47px] p-2 w-[623px] border border-gray-200 rounded-lg shadow-lg fixed">
             <ul>
               {suggestions.map((s) => (
                 <li key={s} className="hover:bg-gray-100">

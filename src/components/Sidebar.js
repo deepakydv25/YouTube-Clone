@@ -29,6 +29,7 @@ import youtubeLogo from "../images/youtube-logo.png";
 import youtubeStudio from "../images/youtube-studio.png";
 import youtubeMusic from "../images/youtube-music.png";
 import youtubeKids from "../images/youtube-kids.png";
+import WatchPage from "./WatchPage";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -37,8 +38,8 @@ const Sidebar = () => {
   if (!isMenuOpen) return <ClosedSidebar />;
 
   return (
-    <div className="px-3 pt-2 shadow-lg bg-red-200">
-      <div className="pr-2 overflow-y-auto">
+    <div className="px-3 pt-2 shadow-lg h-full py-2">
+      <div className="pr-2">
         <div>
           <ul>
             <li>
@@ -253,8 +254,8 @@ const Sidebar = () => {
 
 const ClosedSidebar = () => {
   return (
-    <div className=" bg-blue-200">
-      <div className="w-14 h-screen z-10 fixed border-r-2">
+    <div className="pb-2">
+      <div className="w-20 border-r-2">
         <ul>
           <li className="py-1 mt-1">
             <Link to="/">
@@ -281,6 +282,154 @@ const ClosedSidebar = () => {
               <MdOutlineSubscriptions className="h-5 w-7" />
             </Link>
           </li>
+          <div className="border-t-2 pt-2">
+            <ul>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdOutlineVideoLibrary className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <RiHistoryLine className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <RiVideoLine className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdOutlineWatchLater className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <BsChevronDown className="h-5 w-7" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="border-t-2 pt-2">
+            <ul>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <HiOutlineFire className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdOutlineShoppingBag className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdOutlineMusicNote className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdOutlineMovie className="h-5 w-7" />
+                </Link>
+              </li>
+
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <FiRadio className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <SiYoutubegaming className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <HiOutlineNewspaper className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <IoTrophyOutline className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <MdLightbulbOutline className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <TbHanger className="h-5 w-7" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="border-t-2 pt-2">
+            <ul>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <img
+                    className="h-[20px] w-5"
+                    src={youtubeLogo}
+                    alt="youtubeLogo"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <img
+                    className="h-[20px] w-5"
+                    src={youtubeStudio}
+                    alt="youtubeStudio"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <img
+                    className="h-[20px] w-5"
+                    src={youtubeMusic}
+                    alt="youtubeMusic"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <img
+                    className="h-[20px] w-5"
+                    src={youtubeKids}
+                    alt="youtubeKids"
+                  />
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="border-t-2 pt-2 pb-2">
+            <ul>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <IoSettingsOutline className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <RiFlagLine className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <TfiHelpAlt className="h-5 w-7" />
+                </Link>
+              </li>
+              <li>
+                <Link className="flex hover:bg-slate-300 rounded-full px-4 py-2 m-1">
+                  <RiFeedbackLine className="h-5 w-7" />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>

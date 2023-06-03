@@ -4,11 +4,13 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_RESULT_API } from "../config";
 import { cacheResults } from "../utils/searchSlice";
 import SideBarMenu from "./SideBarMenu";
+import SearchVideo from "./SearchVideo";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [relatedVideo, setRealtedVideo] = useState([]);
 
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
@@ -43,6 +45,22 @@ const Header = () => {
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
+  };
+
+  //https://www.youtube.com/results?search_query=jagjit+singh
+  const handleSuggestionSelect = (selectedSuggestion) => {
+    setSearchQuery(selectedSuggestion);
+    fetchRelatedVideos(selectedSuggestion);
+  };
+
+  const fetchRelatedVideos = async (selectedSuggestion) => {
+    const data = await fetch(
+      YOUTUBE_SEARCH_RESULT_API.replace("[surfing]"),
+      selectedSuggestion
+    );
+    const json = await data.json();
+    setRealtedVideo(json.items);
+    console.log("search related video :", json.items);
   };
 
   return (
@@ -84,13 +102,27 @@ const Header = () => {
           <div className=" bg-white ml-[2px] mt-[47px] p-2 w-[623px] border border-gray-200 rounded-lg shadow-lg fixed">
             <ul>
               {suggestions.map((s) => (
-                <li key={s} className="hover:bg-gray-100">
+                <li
+                  key={s}
+                  className="hover:bg-gray-100"
+                  onClick={() => handleSuggestionSelect(s)}
+                >
                   {s}
                 </li>
               ))}
             </ul>
           </div>
         )}
+        {relatedVideo.map((video) => (
+          <div key={video.id.videoId}>
+            <img
+              src={video.snippet.thumbnails.default.url}
+              alt="Video Thumbnail"
+            />
+            <h3>{video.snippet.title}</h3>
+            <p>{video.snippet.description}</p>
+          </div>
+        ))}
       </div>
 
       <div>

@@ -92,19 +92,21 @@ const VideoCard = ({ info }) => {
     let data = await fetch(YOUTUBE_CHANNEL_ID + videoDetials.snippet.channelId);
     data = await data.json();
     setChannelDetails(data.items[0]);
-    console.log("channel-", data.items[0]);
+    // console.log("channel-", data.items[0]);
   };
 
   return (
     <div className="">
-      <div className="m-2 h-[330px] w-72 bg-blue-200">
+      <div className="m-2 h-[350px] max-h-[350px] w-72 shadow-md">
         <img
           className="rounded-lg"
           alt="thumbnail"
           src={thumbnails.medium.url}
         />
         <ul>
-          <li className="font-bold py-2">{title}</li>
+          <li className="font-bold py-2">
+            {title.length > 50 ? `${title.substring(0, 50)}...` : title}
+          </li>
           <div className="flex flex-row items-center">
             <img
               className="h-10 rounded-full m-1"
@@ -129,7 +131,7 @@ const VideoCard = ({ info }) => {
 
 export const AdvideoCard = ({ info }) => {
   return (
-    <div className="p-1 border border-red-900">
+    <div className="p-1 border">
       <VideoCard info={info} />
       <span>Ad</span>
     </div>

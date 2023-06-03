@@ -26,7 +26,7 @@ const VideoContainer = () => {
   return videos.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="flex flex-wrap p-2 bg-yellow-200">
+    <div className="flex flex-wrap p-2">
       {videos[0] && <AdvideoCard info={videos[0]} />}
       {videos.map((video) => (
         <Link key={video.id} to={"/watch?v=" + video.id}>
